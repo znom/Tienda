@@ -7,6 +7,7 @@ from django.contrib import messages
 
 def home(request):
 
+
     productos = Producto.objects.all()
     context = {'productos':productos}
     return render(request, 'guitar/home.html',context)
@@ -23,9 +24,9 @@ def registro(request):
     else:
         form = formRegistro()
 
-    context1 = {'form':form}
+    context = {'form':form}
         
-    return render(request,'guitar/registro.html',context1) 
+    return render(request,'guitar/registro.html',context) 
 
 
 

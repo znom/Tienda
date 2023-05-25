@@ -4,16 +4,56 @@
 
 {% block css %}
 
+<link rel="stylesheet" type="text/css" href="{% static 'css/styleRegistro.css' %}">
 
-{% endblock %}
+
+{% endblock css%}
 
 {% block content %}
 
+<body class="login-page">
+    <div class="twitter-login-box">
+        <header>
+            <img src="https://static01.nyt.com/images/2014/08/10/magazine/10wmt/10wmt-jumbo-v4.jpg?quality=90&auto=webp" alt="twitter logo">
+            <h1>Registrate</h1>
+        </header>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="input-wrapper">
+                <label for="user-name-id">Usuario</label>
+                {{ form.usuario }}
+            </div>
+            <div class="input-wrapper">
+                <label for="user-name-id">Email</label>
+                {{ form.email }}
+            </div>
+
+            <div class="input-wrapper">
+                <label for="password-id">Password</label>
+                {{ form.contra }}
+            </div>
+            <div class="input-wrapper">
+                <label for="password-id">Confirm Password</label>
+                {{ form.contra2 }}
+            </div>
+
+            <button class="twitter-btn">Registrarse</button>
+        </form>
+
+        <div class="footer">
+            <a href="#">¿Ya tienes una cuenta? Login</a>
+        </div>
+
+    </div>
+
 
 
 {% endblock %}
-
 
 {% block js %}
 
-{% endblock %}
+
+{% endblock js%}
+
+

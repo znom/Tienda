@@ -129,7 +129,7 @@
       		var len = el.value.length * 2;
       		el.focus();
       		el.setSelectionRange(len, len);
-    	} else {
+    	} else {	
       		el.value = el.value;
     	}
 	};
