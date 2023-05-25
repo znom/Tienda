@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.titulo {
+
+
+    color: white;
+    font-size: 40px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-bottom: 15px; 
+    float: left;
+    
+
+
+}
+
+
+.registro {
+    
+    width: 400px;
+    height: 710px;
+
+    background-color:rgb(41, 39, 39);  
+    padding: 30px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 4px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    box-shadow: 7px 13px 37px #000;
+    
+
+}
+
+.registro h1{
+
+    font-size: 22px;
+    margin-bottom: 20px;
+
+
+
+
+}
+
+.control{
+
+    width: 100%;
+    background: rgb(41, 39, 39) ;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid rgb(162, 144, 162);
+    font-family: Franklin Gothic Medium, 'Arial Narrow', 'Arial', 'sans-serif';
+    font-size: 15px;
+    color: white;
+    
+}
+
+
+
+
+
+
+.registro p{
+    
+    
+    text-align: center;
+    font-size: 14px;
+    
+
+
+
+}
+
+.registro a{
+
+    color: white;
+    text-decoration: none;
+
+
+}
+
+.registro a:hover{
+
+    color: white;
+    text-decoration: underline;
+
+
+}
+
+
+.registro .boton{
+
+    width: 100%;
+    background: rgb(162, 144, 162);
+    border: none;
+    padding: 16px;
+    color: white;
+    margin: 16px 0;
+    font-size: 16px;
+    font-weight: 700px;
+
+
+}
+
+ /* agregue el mismo formato pero cree nuevos "." para modificarlos  */
+
+.registropp {
+    width: 450px;
+    background-color:rgb(41, 39, 39);  
+    padding: 60px;
+    padding-bottom: 70px;
+    margin: auto;
+    margin-top: 60px;
+    border-radius: 4px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    box-shadow: 7px 13px 37px #000;
+
+}
+.registropp .boton{
+
+    width: 100%;
+    background: rgb(162, 144, 162);
+    border: none;
+    padding: 16px;
+    color: white;
+    margin: 16px 0;
+    font-size: 16px;
+
+
+}
+
+.recuperarcontra {
+    float:inline-end;
+    width: 450px;
+    background-color:rgb(41, 39, 39);  
+    padding: 60px;
+    padding-bottom: 10px;
+    margin: auto;
+    margin-top: 60px;
+    border-radius: 4px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    box-shadow: 7px 13px 37px #000;
+
+}
+.recuperarcontra .boton{
+
+    width: 100%;
+    background: rgb(162, 144, 162);
+    border: none;
+    padding: 16px;
+    color: white;
+    margin: 16x 0;
+    font-size: 16px;
+
+
+}
+
+.barra{
+    position: relative;
+    display: block;
+    width: 100%;
+}
+form .grupo{
+    position: relative;
+    margin: 45px ;
+}

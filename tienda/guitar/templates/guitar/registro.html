@@ -1,0 +1,93 @@
+{% extends 'guitar/baseNavbar.html' %}
+
+{% load static %}
+
+{% block css %}
+<link type ="text/css" rel="stylesheet" href="{% static 'css/styleRegistro.css'%}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+
+
+    
+
+
+    <section class="registro">
+        <form action="{% url 'registro' %}" method="POST" name="form" id="form" enctype="multipart/form-data">
+            {% csrf_token %}
+
+    
+
+            <div class="row">
+                
+                <h1>Registrarse</h1>
+            
+            </div>
+
+            <div class="row form-group">
+
+                <input class="control" type="text" name="nombreUsuario" id="nombreUsuario" placeholder="Ingrese nombre de usuario" >
+                
+
+            </div> 
+                
+            
+            <div class="row form-group">
+                
+                <input class="control " type="password" name="contra" id="contra" placeholder="Ingrese contraseña" >
+                
+            </div> 
+
+            <div class="row form-group">
+                
+                <input class="control " type="password" name="confi_contraseña" id="confi_contraseña" placeholder="Confirmar contraseña" > 
+                
+            </div> 
+
+            <div class="row form-group">
+                
+                <p>Estoy de acuerdo con <a  href="javascript:ventanaSecundaria('terminos.html')">Terminos y Condiciones</a></p>
+            
+            </div> 
+
+            <div class="row form-group">
+
+                
+                <button type="submit" class="boton" >Registrarse</button>
+
+                <!--<a href="index.html"><input class="boton" type="submit" id="boton" value="Registrar"></a>-->
+            
+            </div>  
+
+            <div class="row"> <p><a href="#">¿Ya tengo Cuenta?</a></p></div> 
+
+            {% if messages %}
+            <div>
+            {% for i in messages %}
+                <p style="color: rgb(255, 255, 255);">{{ i }}</p>
+            {% endfor %}
+            </div>
+
+            {% endif %}
+            
+
+            <p id="mensaje"></p>
+            
+
+        </form>
+        
+    </section>
+
+ 
+
+</div>
+
+
+{% endblock %}
+
+
+{% block js %}
+<script src="{% static 'js/JS_Validaciones.js'%}"></script>
+<script src="{%static 'js/JS.js'%}"> </script>
+{% endblock %}
