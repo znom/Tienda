@@ -15,11 +15,7 @@ def home(request):
 
 def registro(request):
     
-    
-
-
-
-    """ if request.method =='POST':
+    if request.method =='POST':
         form = formRegistro(request.POST)
         if form.is_valid():
             form.save()
@@ -29,7 +25,7 @@ def registro(request):
 
     context1 = {'form':form}
         
-    return render(request,'guitar/registro.html',context1) """
+    return render(request,'guitar/registro.html',context1) 
 
 
 

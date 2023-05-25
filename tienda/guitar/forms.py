@@ -5,5 +5,5 @@ class formRegistro(forms.ModelForm):
 
     class Meta:
         model = Usuario
-        fields = ['usuario','contra']
+        fields = '__all__'
 
