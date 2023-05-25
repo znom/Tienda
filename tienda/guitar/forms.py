@@ -1,16 +1,26 @@
+from typing import Any, Dict
 from django import forms
-from .models import Usuario
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
-class formRegistro(forms.ModelForm):
 
-    usuario = forms.CharField(min_length=3,max_length=20)
-    email = forms.EmailField(max_length = 200)
-    contra = forms.CharField(widget=forms.PasswordInput)
-    contra2 = forms.CharField(widget=forms.PasswordInput)
+class UserRegisterForm(UserCreationForm):
 
     class Meta:
-        model = Usuario
-        fields = '__all__'
+        model = User
+        fields = ['username','email','password1','password2']
+
+   
+
+
+
+
+
+    
+
+    
+
+    
 
 
         

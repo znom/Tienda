@@ -18,27 +18,27 @@
             <h1>Registrate</h1>
         </header>
 
-        <form method="post">
+        <form  method="post" >
             {% csrf_token %}
             <div class="input-wrapper">
                 <label for="user-name-id">Usuario</label>
-                {{ form.usuario }}
+                {{form.username}}
             </div>
             <div class="input-wrapper">
                 <label for="user-name-id">Email</label>
-                {{ form.email }}
+                {{form.email}}
             </div>
 
             <div class="input-wrapper">
                 <label for="password-id">Password</label>
-                {{ form.contra }}
+                {{form.password1}}
             </div>
             <div class="input-wrapper">
                 <label for="password-id">Confirm Password</label>
-                {{ form.contra2 }}
+                {{form.password2}}
             </div>
 
-            <button class="twitter-btn">Registrarse</button>
+            <button class="twitter-btn" type="submit">Registrarse</button>
         </form>
 
         <div class="footer">
@@ -53,6 +53,7 @@
 
 {% block js %}
 
+<script src="{% static 'js/JS_Validaciones.js' %}"></script>
 
 {% endblock js%}
 

@@ -1,14 +1,14 @@
 var usuario = document.getElementById("nombreUsuario");
 var correo = document.getElementById("correo");
 var fecha_nac = document.getElementById("fechaNac");
-var contra = document.getElementById("contra");
-var confi_contra = document.getElementById("confi_contraseña");
+var contra = document.getElementById("contra1");
+var confi_contra = document.getElementById("contra2");
 var form = document.getElementById("form");
 var men = document.getElementById("mensaje");
 
 
 
-form.addEventListener("submit", e=>{
+/* form.addEventListener("submit", e=>{
 
     
 
@@ -123,7 +123,37 @@ form.addEventListener("submit", e=>{
     }
     
 
-} )
+} ) */
+
+
+form.addEventListener("submit",e=>{
+
+    let men = "";
+    let entrar = false;
+
+    if (contra.value != confi_contra.value ){
+
+        men += "Sus contraseñas deben coincidir."
+        entrar = true
+
+    }
+
+    if(entrar){
+        e.preventDefault();
+        mensaje.innerHTML = men
+        e.preventDefault();
+        
+    }else{
+
+
+        
+        mensaje.innerHTML = 'Validaciones cumplidas correctamente'
+        
+    }
+
+
+
+})
 
 //Aqui terminan las del enzo  ↥ ↥ ↥ ↥ ↥ ↥ ↥ ↥
 

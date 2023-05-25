@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect
 from .models import Producto
-from .forms import formRegistro
+from .forms import UserRegisterForm
 from django.contrib import messages
+
 
 
 
@@ -16,15 +17,20 @@ def home(request):
 
 def registro(request):
     
-    if request.method =='POST':
-        form = formRegistro(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
+    if request.method == 'POST':
+       form = UserRegisterForm(request.POST)
+       if form.is_valid():
+           form.save()
+           return redirect('home')
     else:
-        form = formRegistro()
+        form = UserRegisterForm()
 
-    context = {'form':form}
+
+        
+
+    context = {'form':form }
+
+    
         
     return render(request,'guitar/registro.html',context) 
 
