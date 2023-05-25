@@ -12,4 +12,7 @@ class formRegistro(forms.ModelForm):
         model = Usuario
         fields = '__all__'
 
+
+        
+ 
    
