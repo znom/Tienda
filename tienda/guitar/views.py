@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect
 from .models import Producto
-from .forms import UserRegisterForm
+from .forms import CustomUserCreationForm
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
 
 
 
@@ -14,25 +15,23 @@ def home(request):
     return render(request, 'guitar/home.html',context)
 
 
-
 def registro(request):
-    
+    data = {
+        'form':CustomUserCreationForm
+    }
+
     if request.method == 'POST':
-       form = UserRegisterForm(request.POST)
-       if form.is_valid():
-           form.save()
-           return redirect('home')
-    else:
-        form = UserRegisterForm()
+        formulario = CustomUserCreationForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            user = authenticate(username=formulario.cleaned_data['username'],password=formulario.cleaned_data['password1'])
+            login(request, user)
+            messages.success(request, "Te has registrado correctamente")
+            return redirect('home')
+        data['form'] = formulario
 
 
-        
-
-    context = {'form':form }
-
-    
-        
-    return render(request,'guitar/registro.html',context) 
+    return render(request,'registration/registro.html',data)
 
 
 
