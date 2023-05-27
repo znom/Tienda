@@ -67,33 +67,55 @@
     {% load crispy_forms_tags %}
 
     
+    <div class="container">
+        {% load crispy_forms_tags %}
+
+        <br>
+        <br>
+        <br>
         <div class="row">
-          <div class="col-12 col-md-6 offset-md-3">
-            <div class="card">
-              <div class="card-body">
-                <h1>Agregar Producto</h1>
-                <hr>
-            <form action="" method="post" enctype="multipart/form-data">
-              {% csrf_token %}
 
-              {{form | crispy}}
+            <div class="col-12 col-md-6 offset-md-3">
 
-              <div class="d-flex justify-content-center">
-                <input type="reset" value="Cancelar" class="btn btn-secondary">
-                &nbsp;
-                <input type="submit" value="Agregar" class="btn btn-primary">
-              </div>
+                <div class="card">
 
-              
+                    <div class="card-body">
 
 
+                        <h2>Crear cuenta de usuario</h2>
 
-            </form>
-            {{mensaje}} 
-          </div>
-          </div>
-          </div>
+                        <hr>
+
+                        <form action="" method="post">
+
+                            {% csrf_token %}
+
+                            {{form | crispy}}
+
+                            <a href="{% url 'home' %}">Ir al home</a>
+                            <input type="submit" value="Crear cuenta" class="btn btn-success">
+
+
+
+
+                        </form>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
         </div>
+
+
+
+
+    </div>
       
     
     

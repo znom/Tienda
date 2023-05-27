@@ -1,15 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class Usuario(models.Model):
-    usuario = models.CharField(max_length=20,blank=False)
-    contra = models.CharField(max_length=30,blank=False)
-    contra2 = models.CharField(max_length=30,blank=False, null=True)
-    email = models.CharField(max_length=30,blank=False, null=True)
 
-
-    def __str__(self):
-        return self.usuario
 
 class Categoria(models.Model):
     categoria = models.CharField(max_length=30)
@@ -29,7 +21,7 @@ class Producto(models.Model):
     def __str__(self):
         return self.nombre
     
-class Rol(models.Model):
+class Trabajador(models.Model):
 
     roles_choices = [
         ("E","Estandar"),
@@ -37,10 +29,14 @@ class Rol(models.Model):
         ("B","Bodeguero")
     ]
 
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    user = models.OneToOneField(User,on_delete=models.CASCADE,null=True)
     rol = models.CharField(max_length=1,choices=roles_choices,default="E")
 
+
+
     def __str__(self):
-        return f'{self.user.username} posee rol {self.rol}'
+        return f'El trabajador {self.user.username} posee rol de {self.rol}'
+    
+   
 
 

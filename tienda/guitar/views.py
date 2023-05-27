@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from .models import Producto
-from .forms import CustomUserCreationForm,productoForm
+from .models import Producto, User, Trabajador
+from .forms import CustomUserCreationForm,productoForm,asignarRolForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 
@@ -30,13 +30,13 @@ def registro(request):
         data['form'] = formulario
 
 
-    return render(request,'registration/registro.html',data)
+    return render(request,'registration/registro.html',data) 
 
 
-def homeAdmin(request):
+def listaProductos(request):
     productos = Producto.objects.all()
     context = {'productos':productos}
-    return render(request, 'guitar/vistaAdmin/homeAdmin.html', context)
+    return render(request, 'guitar/vistaAdmin/listaProductos.html', context)
 
 def agregarProductos(request):
 
@@ -65,7 +65,7 @@ def modificarProducto(request, id):
         formulario = productoForm(data=request.POST, instance=producto, files=request.FILES)
         if formulario.is_valid():
             formulario.save()
-            return redirect('homeAdmin')
+            return redirect('listaProductos')
         
         data["form"] = formulario
 
@@ -75,7 +75,32 @@ def modificarProducto(request, id):
 def eliminarProducto(request, id):
     producto = get_object_or_404(Producto, id=id)
     producto.delete()
-    return redirect('homeAdmin')
+    return redirect('listaProductos')
+
+
+def asignarRoles(request):
+    
+    data = {
+        'form':asignarRolForm
+    }
+
+    if request.method == 'POST':
+        formulario = asignarRolForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+          
+            return redirect('listaTrabajadores')
+        data['form'] = formulario
+
+    return render(request, 'guitar/vistaAdmin/asignarRoles.html',data)
+
+def listaTrabajadores(request):
+    trabajadores = Trabajador.objects.all()
+    
+    context = {'trabajadores':trabajadores}
+    
+
+    return render(request,'guitar/vistaAdmin/listaTrabajadores.html',context)
 
 
 
