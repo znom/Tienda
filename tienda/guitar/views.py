@@ -1,6 +1,6 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .models import Producto
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm,productoForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 
@@ -32,6 +32,51 @@ def registro(request):
 
 
     return render(request,'registration/registro.html',data)
+
+
+def homeAdmin(request):
+    productos = Producto.objects.all()
+    context = {'productos':productos}
+    return render(request, 'guitar/vistaAdmin/homeAdmin.html', context)
+
+def agregarProductos(request):
+
+    data ={
+        'form':productoForm
+    }
+
+    if request.method == 'POST':
+        formulario = productoForm(data=request.POST, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            data["mensaje"] = "Agregado correctamente"
+        else:
+            data["form"] = formulario
+
+    return render(request, 'guitar/vistaAdmin/agregarProductos.html',data)
+
+def modificarProducto(request, id):
+    producto = get_object_or_404(Producto, id=id)
+
+    data = {
+        'form':productoForm(instance=producto)
+    }
+
+    if request.method == 'POST':
+        formulario = productoForm(data=request.POST, instance=producto, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect('homeAdmin')
+        
+        data["form"] = formulario
+
+    return render(request, 'guitar/vistaAdmin/modificarProducto.html',data)
+
+
+def eliminarProducto(request, id):
+    producto = get_object_or_404(Producto, id=id)
+    producto.delete()
+    return redirect('homeAdmin')
 
 
 
