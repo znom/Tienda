@@ -3,11 +3,11 @@
 {% load static %}
 
 {% block css %}
-<link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
 
-<link rel="stylesheet" href="{% static 'css/reset.css' %}"> <!-- CSS reset -->
-<link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Resource style -->
-<link rel="stylesheet" href="{% static 'css/demo.css' %}"> <!-- Demo style -->
+	<link rel="stylesheet" href="{% static 'css/reset.css' %}"> <!-- CSS reset -->
+	<link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Resource style -->
+	<link rel="stylesheet" href="{% static 'css/demo.css' %}"> <!-- Demo style -->
 
 
 {% endblock css %}
@@ -18,43 +18,48 @@ Registro
 
 {% block content %}
 
-<div class="container">
-    {% load crispy_forms_tags %}
+    <div class="container">
+        {% load crispy_forms_tags %}
 
-    <br>
-    <br>
-    <br>
-    <div class="row">
+        <br>
+        <br>
+        <br>
+        <div class="row">
 
-        <div class="col-12 col-md-6 offset-md-3">
+            <div class="col-12 col-md-6 offset-md-3">
 
-            <div class="card">
+                <div class="card">
 
-                <div class="card-body">
-
-
-                    <h2>Registrarse</h2>
-
-                    <hr>
-
-                    <form action="" method="post">
-
-                        {% csrf_token %}
-
-                        {{form | crispy}}
-
-                        <a href="{% url 'home' %}">Ir al home</a>
-                        <input type="submit" value="Registrarse" class="btn btn-success">
+                    <div class="card-body">
 
 
+                        <h2>Registrarse</h2>
+
+                        <hr>
+
+                        <form action="" method="post">
+
+                            {% csrf_token %}
+
+                            {{form | crispy}}
+
+                            <a href="{% url 'home' %}">Ir al home</a>
+                            <input type="submit" value="Registrarse" class="btn btn-success">
 
 
-                    </form>
 
+
+                        </form>
+
+
+                    </div>
 
                 </div>
 
             </div>
+
+
+
 
         </div>
 
@@ -62,11 +67,6 @@ Registro
 
 
     </div>
-
-
-
-
-</div>
 
 
 
