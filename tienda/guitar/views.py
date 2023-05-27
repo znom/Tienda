@@ -9,7 +9,6 @@ from django.contrib.auth import authenticate, login
 
 def home(request):
 
-
     productos = Producto.objects.all()
     context = {'productos':productos}
     return render(request, 'guitar/home.html',context)
