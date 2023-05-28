@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from .models import Producto, User, Trabajador
-from .forms import CustomUserCreationForm,productoForm,asignarRolForm
+from .forms import CustomUserCreationForm,productoForm,asignarRolForm,compraForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
+from guitar.carrito import Carrito
 
 
 
@@ -12,10 +13,11 @@ def home(request):
     trabajador = Trabajador.objects.all()
     """ for t in trabajador:
         if t.rol == "B":
-            return redirect(to='homeBodeguero')
+            return redirect("homeBodeguero")
         if t.rol == "V":
-            return redirect('homeBodeguero')
-        if t.rol != "B" and t.rol != "V" and t.rol != "E": """
+            return redirect("homeBodeguero")
+        if t.rol != "B" and t.rol != "V" and t.rol != "E":
+            return redirect("home") """
             
     productos = Producto.objects.all()
     context = {'productos':productos,'trabajador':trabajador}
@@ -151,3 +153,55 @@ def homeBodeguero(request):
 
     return render(request,'guitar/vistaBodeguero/homeBodeguero.html')
 
+
+
+
+# FUNCIONES DEL CARRITO DE COMPRA <33
+
+def carrito(request):
+    return render(request, "guitar/carrito.html")
+
+def agregar_producto(request, producto_id):
+    carrito = Carrito(request)
+    producto = Producto.objects.get(id=producto_id)
+    carrito.agregar(producto)
+    return redirect("carrito")
+
+def eliminar_producto(request, producto_id):
+    carrito = Carrito(request)
+    producto = Producto.objects.get(id=producto_id)
+    carrito.eliminar(producto)
+    return redirect("carrito")
+
+def restar_producto(request, producto_id):
+    carrito = Carrito(request)
+    producto = Producto.objects.get(id=producto_id)
+    carrito.restar(producto)
+    return redirect("carrito")
+
+def limpiar_carrito(request):
+    carrito = Carrito(request)
+    carrito.limpiar()
+    return redirect("carrito")
+
+
+def formularioCompra(request):
+    
+    if request.user.is_authenticated:
+        return redirect("home")
+    else:
+        data ={
+        'form': compraForm
+    }
+
+    if request.method == 'POST':
+        formulario = compraForm(data=request.POST, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+        else:
+            data["form"] = formulario
+
+    
+    
+
+    return render(request,'guitar/formularioCompra.html',data)

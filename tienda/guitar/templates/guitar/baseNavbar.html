@@ -26,7 +26,8 @@
 
 		<nav class="cd-main-nav js-main-nav">
 			<ul class="cd-main-nav__list js-signin-modal-trigger">
-				<li><a class="cd-main-nav__item cd-main-nav__item" href="#">Productos</a></li>
+				<li><a class="cd-main-nav__item cd-main-nav__item" href="{% url 'carrito' %}">Carrito de compras</a></li>
+				<li><a class="cd-main-nav__item cd-main-nav__item" href="{% url 'home' %}">Productos</a></li>
                 <li><a class="cd-main-nav__item cd-main-nav__item" href="#">Categorias</a></li>
 				{% if user.is_authenticated %}
 				<li><a class="cd-main-nav__item cd-main-nav__item--signin" href="{% url 'logout' %}" data-signin="login">Cerrar sesion</a></li>

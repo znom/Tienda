@@ -1,0 +1,85 @@
+{% extends 'guitar/baseNavbar.html' %}
+
+{% load static %}
+
+{% block css %}
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="{% static 'css/reset.css' %}"> <!-- CSS reset -->
+	<link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Resource style -->
+	<link rel="stylesheet" href="{% static 'css/demo.css' %}"> <!-- Demo style -->
+
+
+{% endblock css %}
+
+{% block title %}
+Carrito
+{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    
+
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Cantidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if request.session.carrito.items %}
+          {% for key, value in request.session.carrito.items %}
+          <tr>
+            <th scope="row">1</th>
+            <td>{{value.nombre}}</td>
+            <td>$ {{value.acumulado}}</td>
+            <td><a href="{% url 'agregar' value.producto_id %}" class="badge btn btn-dark badge-dark">+</a> {{value.cantidad}}
+                <a href="{% url 'restar' value.producto_id %}" class="badge btn btn-dark badge-dark">-</a></td>
+          </tr>
+          {% endfor %}
+          {% else %}
+          <tr>
+           
+            <td>
+              <div class="alert alert-danger text-center">Sin productos</div>
+            </td>
+            
+          </tr>
+          {% endif %}
+          <tr>
+            <th scope="row">Total</th>
+            <td>$ {{total_carrito}}</td>
+            
+          </tr>
+
+        </tbody>
+      </table>
+      <hr>
+
+      <div class="row text-center">
+        <div class="col-6"><a href="{% url 'limpiar' %}" class="btn btn-danger">Limpiar</a></div>
+        <div class="col-6"><a href="{% url 'formularioCompra' %}" class="btn btn-success">Comprar</a></div>
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+    
+
+
+
+{% endblock content %}

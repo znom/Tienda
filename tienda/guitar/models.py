@@ -38,6 +38,16 @@ class Trabajador(models.Model):
     def __str__(self):
         return f'El trabajador {self.user.username} posee rol de {self.rol}'
     
+class Invitado(models.Model):
+    nombre = models.CharField(max_length=40)
+    email = models.CharField(max_length=60)
+    direccion = models.CharField(max_length=100)
+
+
+    def __str__(self):
+        return self.nombre
+
+    
 
 
     
