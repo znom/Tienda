@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 
 
+
 class Categoria(models.Model):
     categoria = models.CharField(max_length=30)
     
@@ -36,6 +37,15 @@ class Trabajador(models.Model):
 
     def __str__(self):
         return f'El trabajador {self.user.username} posee rol de {self.rol}'
+    
+
+
+    
+
+    
+    
+
+
     
    
 

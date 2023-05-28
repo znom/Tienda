@@ -9,8 +9,16 @@ from django.contrib.auth import authenticate, login
 
 def home(request):
 
+    trabajador = Trabajador.objects.all()
+    """ for t in trabajador:
+        if t.rol == "B":
+            return redirect(to='homeBodeguero')
+        if t.rol == "V":
+            return redirect('homeBodeguero')
+        if t.rol != "B" and t.rol != "V" and t.rol != "E": """
+            
     productos = Producto.objects.all()
-    context = {'productos':productos}
+    context = {'productos':productos,'trabajador':trabajador}
     return render(request, 'guitar/home.html',context)
 
 
@@ -26,11 +34,21 @@ def registro(request):
             user = authenticate(username=formulario.cleaned_data['username'],password=formulario.cleaned_data['password1'])
             login(request, user)
             messages.success(request, "Te has registrado correctamente")
-            return redirect('home')
+            
+            trabajador = Trabajador.objects.all()
+            for t in trabajador:
+                if t.rol == "B":
+                    return redirect(to='homeBodeguero')
+                if t.rol == "V":
+                    return redirect('homeBodeguero')
+                if t.rol != "B" and t.rol != "V" and t.rol != "E": 
+                    return redirect('home')
         data['form'] = formulario
 
 
     return render(request,'registration/registro.html',data) 
+
+
 
 
 def listaProductos(request):
@@ -94,6 +112,31 @@ def asignarRoles(request):
 
     return render(request, 'guitar/vistaAdmin/asignarRoles.html',data)
 
+def modificarRol(request, id):
+    trabajador = get_object_or_404(Trabajador, id=id)
+
+    data = {
+        'form':asignarRolForm(instance=trabajador)
+    }
+
+    if request.method == 'POST':
+        formulario = asignarRolForm(data=request.POST, instance=trabajador, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect('listaTrabajadores')
+        
+        data["form"] = formulario
+
+    return render(request, 'guitar/vistaAdmin/modificarRol.html',data)
+
+
+def eliminarRol(request, id):
+    trabajador = get_object_or_404(Trabajador, id=id)
+    trabajador.delete()
+    return redirect('listaTrabajadores')
+
+
+
 def listaTrabajadores(request):
     trabajadores = Trabajador.objects.all()
     
@@ -103,4 +146,8 @@ def listaTrabajadores(request):
     return render(request,'guitar/vistaAdmin/listaTrabajadores.html',context)
 
 
+
+def homeBodeguero(request):
+
+    return render(request,'guitar/vistaBodeguero/homeBodeguero.html')
 

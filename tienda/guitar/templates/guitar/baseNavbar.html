@@ -33,13 +33,20 @@
 				<li><a class="cd-main-nav__item cd-main-nav__item--signup" href="#0" data-signin="signup">{{user.username}}</a></li>
 					
 				<!-- EN ESTE IF HACE LA VALIDACION DE SI ES UN ADMIN O NO POR ESO IGUAL A ADMIN PERO ESE SERA EL SUPER USUARIO QUE CREES-->
+				
+				
+
 				{% if user.username == "enzo" %}
 					<li><a class="cd-main-nav__item cd-main-nav__item--signup" href="{% url 'listaProductos' %}" data-signin="signup">Vista Admin</a></li>
-					{% endif %}
+				{% endif %}
+
+				
+				
 				{% else %}
 				<li><a class="cd-main-nav__item cd-main-nav__item--signin" href="{% url 'login' %}" data-signin="login">Iniciar sesion</a></li>
 				<li><a class="cd-main-nav__item cd-main-nav__item--signup" href="{% url 'registro' %}" data-signin="signup">Registrarse</a></li>
 				{% endif %}
+				
 			</ul>
 		</nav>
 	</header>

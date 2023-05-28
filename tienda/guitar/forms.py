@@ -13,6 +13,7 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 
+
 class productoForm(forms.ModelForm):
 
     class Meta:

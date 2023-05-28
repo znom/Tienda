@@ -3,11 +3,11 @@
 <head>
     {% load static %}
   <meta charset="UTF-8">
-  <title>Home admin</title>
+  <title>Agregar</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="{% static 'css/styleHomeAdmin.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+  <link rel="stylesheet" href="{% static 'css/styleHomeAdmin.css' %}">
+  
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 </head>
 <body>
@@ -64,57 +64,65 @@
     {% endif %}
   </div>
   <div class="app-content">
-    <div class="app-content-header" style="margin-bottom: 50px;">
-      <h1 class="app-content-headerText">Trabajadores</h1>
-      <button class="mode-switch" title="Switch Theme">
-        <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
-          <defs></defs>
-          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-        </svg>
-      </button>
-      <button class="app-content-headerButton"><a href="{% url 'asignarRoles' %}" class="app-content-headerButton">Asignar Roles</a></button>
-    </div>
+    {% load crispy_forms_tags %}
+
     
-    <div class="products-area-wrapper tableView">
-      <div class="products-header">
-        <div class="product-cell image">
-          Trabajador
-          
+    <div class="container">
+        {% load crispy_forms_tags %}
+
+        <br>
+        <br>
+        <br>
+        <div class="row">
+
+            <div class="col-12 col-md-6 offset-md-3">
+
+                <div class="card">
+
+                    <div class="card-body">
+
+
+                        <h2>Modificar Rol</h2>
+
+                        <hr>
+
+                        <form action="" method="post">
+
+                            {% csrf_token %}
+
+                            {{form | crispy}}
+
+                            <a href="{% url 'home' %}">Ir al home</a>
+                            <input type="submit" value="Modificar" class="btn btn-success">
+
+
+
+
+                        </form>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
         </div>
-        
-        <div class="product-cell price">Rol</div>
-        <div class="product-cell price"></div>
-        <div class="product-cell price"></div>
-        <div class="product-cell price"></div>
-        
-      </div>
-      {% for trabajador in trabajadores %}
-      <div class="products-row">
-        <button class="cell-more-button">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
-        </button>
-          <div class="product-cell image">
-            <!-- {% if producto.imagen %}
-                PA QUE MUESTRE LA IMAGEN TIENE QUE TENER .URL CREO NOSE
-                <img class="group list-group-image" src="{{ producto.imagen.url }}" alt="" />
-                {% endif %}-->
-            <span>{{trabajador.user}}</span>
-          </div>
-        {% if trabajador.rol == "V" %}
-        <div class="product-cell category"><span class="cell-label"></span>Vendedor</div>
-        {% elif trabajador.rol == "B" %}
-        <div class="product-cell category"><span class="cell-label"></span>Bodeguero</div>
-        {% endif %}
-        <div class="product-cell category"><span class="cell-label"></span></div>
-        <div class="product-cell price"><span class="cell-label">Price:</span><a href="{% url 'modificarRol' trabajador.id %}" class="btn btn-info btn-sm">Cambiar Rol</a></div>
-        <div class="product-cell price"><span class="cell-label">Price:</span><a href="{% url 'eliminarRol' trabajador.id %}" class="btn btn-danger btn-sm">Eliminar rol</a></div>
-        
+
+
+
+
     </div>
-    {% endfor %}
+      
+    
+    
   </div>
 </div>
 <!-- partial -->
-  <script  src="{% static 'js/scriptHomeAdmin.js' %}"></script>
+  
 
 </body>
 </html>
