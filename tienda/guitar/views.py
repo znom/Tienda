@@ -1,24 +1,16 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from .models import Producto, User, Trabajador
+from .models import Producto,Trabajador
 from .forms import CustomUserCreationForm,productoForm,asignarRolForm,compraForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from guitar.carrito import Carrito
+from django.contrib.auth.models import User
 
 
 
 
 def home(request):
-
     trabajador = Trabajador.objects.all()
-    """ for t in trabajador:
-        if t.rol == "B":
-            return redirect("homeBodeguero")
-        if t.rol == "V":
-            return redirect("homeBodeguero")
-        if t.rol != "B" and t.rol != "V" and t.rol != "E":
-            return redirect("home") """
-            
     productos = Producto.objects.all()
     context = {'productos':productos,'trabajador':trabajador}
     return render(request, 'guitar/home.html',context)
@@ -37,14 +29,6 @@ def registro(request):
             login(request, user)
             messages.success(request, "Te has registrado correctamente")
             
-            trabajador = Trabajador.objects.all()
-            for t in trabajador:
-                if t.rol == "B":
-                    return redirect(to='homeBodeguero')
-                if t.rol == "V":
-                    return redirect('homeBodeguero')
-                if t.rol != "B" and t.rol != "V" and t.rol != "E": 
-                    return redirect('home')
         data['form'] = formulario
 
 
